@@ -74,6 +74,7 @@ float g_scaleFactorB   = 1.0f;
 float g_radiusA = 2;
 float g_radiusB = 1;
 float g_frames = 0;
+constexpr float SPEED = 2.0f;
 GLuint textureA;
 GLuint textureB;
 constexpr int NUMBER_OF_TEXTURES = 1;
@@ -146,9 +147,6 @@ void initialise()
     
     // Each object has its own unique ID
     glUseProgram(g_shader_program.get_program_id());
-    //GLint textureUniformLocation = glGetUniformLocation(g_shader_program.get_program_id(), "u_texture");
-    //glUniform1i(textureUniformLocation, 0);
-    
     glClearColor(BG_RED, BG_BLUE, BG_GREEN, BG_OPACITY);
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -173,12 +171,12 @@ void update() {
     float delta_time = ticks - g_previous_ticks;
     g_previous_ticks = ticks;
     //g_frames++;
-        
+    //g_rotationAngleA += delta_time * SPEED;
     g_positionA.x = g_radiusA * cos(ticks);
     g_positionA.y = g_radiusA * sin(ticks);
     g_rotationAngleA += delta_time * glm::radians(90.0f);
     g_model_matrixA = glm::mat4(1.0f);
-    g_model_matrixA = glm::translate(g_model_matrixA, glm::vec3(g_positionA.x, g_positionA.y, 0.0f));
+    g_model_matrixA = glm::translate(g_model_matrixA, g_positionA);
     //g_model_matrixA = glm::rotate(g_model_matrixA, g_rotationAngleA, glm::vec3(0.0f, 0.0f, 1.0f));
     
     
@@ -188,7 +186,7 @@ void update() {
     g_scaleFactorB = 1.0f + 0.5f * sin(ticks * 2.0f);
         
     g_model_matrixB = g_model_matrixA;
-    g_model_matrixB = glm::translate(g_model_matrixB, glm::vec3(g_positionB.x, g_positionB.y, 0.0f));
+    g_model_matrixB = glm::translate(g_model_matrixB, g_positionB);
     g_model_matrixB = glm::rotate(g_model_matrixB, g_rotationAngleB, glm::vec3(0.0f, 0.0f, 1.0f));
     g_model_matrixB = glm::scale(g_model_matrixB, glm::vec3(g_scaleFactorB, g_scaleFactorB, 1.0f));
 }
