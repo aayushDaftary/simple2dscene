@@ -1,16 +1,12 @@
 /**
- * @file main.cpp
- * @author Sebastián Romero Cruz (src402@nyu.edu)
- * @brief A simple program that creates a window with OpenGL context and
- * renders a colored triangle. This program demonstrates basic usage of SDL to
- * create a window, create an OpenGL context, and render a simple colored
- * triangle using shaders.
- * @version 0.1
- * @date 2024-05-20
- *
- * @copyright Copyright NYU Tandon School of Engineering (c) 2024
- *
- */
+* Author: Aayush Daftary
+* Assignment: Simple 2D Scene
+* Date due: 2025-02-15, 11:59pm
+* I pledge that I have completed this assignment without
+* collaborating with anyone else, in conformance with the
+* NYU School of Engineering Policies and Procedures on
+* Academic Misconduct.
+**/
 #define GL_SILENCE_DEPRECATION
 #define GL_GLEXT_PROTOTYPES 1
 
@@ -187,7 +183,7 @@ void update() {
         
     g_model_matrixB = g_model_matrixA;
     g_model_matrixB = glm::translate(g_model_matrixB, g_positionB);
-    g_model_matrixB = glm::rotate(g_model_matrixB, g_rotationAngleB, glm::vec3(0.0f, 0.0f, 1.0f));
+    g_model_matrixB = glm::rotate(g_model_matrixB, g_rotationAngleB, glm::vec3(0.0f, 0.0f,  1.0f));
     g_model_matrixB = glm::scale(g_model_matrixB, glm::vec3(g_scaleFactorB, g_scaleFactorB, 1.0f));
 }
 
